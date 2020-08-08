@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="htmlCont">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1">
+<title></title>
+</head>
+<body>
+  <div id="app">
+    <div class="wrapper">
+      <h1 class="name-title" style="font-size: 16px;color:blue;">name: {{name}}</h1>
+      <ul class="result">
+        <li>
+          <a>{{address.sheng}}</a>
+        </li>
+        <li>
+          <a>{{address.shi}}</a>
+        </li>
+        <li>
+          <a>{{ address }}</a>    
+        </li>
+      </ul>
+
+      <div class="result">{{results}}</div>
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="../dist/umd/vue.js"></script>
+<script>
+var vm = new Vue({
+  el: '#app',
+  data () {
+    return {
+      name: 'feng',
+      address: {
+        sheng: '河北',
+        shi: '保定'
+      },
+      results: [100,200,300,[1,2,4,5]]
+    }
+  }
+})
+setTimeout(() => {
+  vm.name = 'feng！！！！'
+  vm.results.push(['1', 2])
+  // 不会监听到测方法
+  delete vm.address.sheng
+  vm.address.detail = '河北省保定市'
+  // 数组
+  vm.results.length = 10
+  vm.results[0] = '000000'
+}, 1000);
+setTimeout(() => {
+  // vm.results[4].push(['1', 2])
+  vm.address.detail = '北京市'
+}, 2000);
+
+// 解决上面的方法
+vm.$delete(vm.address, 'sheng') // 解决： delete vm.address.sheng
+vm.$set(vm.address, 'detail', '河北省保定市') // 解决：vm.address.detail = '河北省保定市'
+vm.$set(vm.results, 0, '00000') // 解决：vm.results[0] = '000000'
+vm.$set(vm.results, 10, '1010')
+
+vm.$watch('address.detail', (val, oldVal) => {
+  console.log('change', val, oldVal)
+})
+
+</script>
+</html>

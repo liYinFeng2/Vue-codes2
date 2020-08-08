@@ -1,0 +1,28 @@
+{
+  "name": "vue-codes2",
+  "version": "1.0.0",
+  "description": "Vue【模板解析+初次渲染】源码手动实现",
+  "main": "rollup.config.js",
+  "scripts": {
+    "build:dev": "rollup -c",
+    "server": "cross-env ENV=development MODE=test rollup -c -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liYinFeng2/Vue-codes2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liYinFeng2/Vue-codes2/issues"
+  },
+  "homepage": "https://github.com/liYinFeng2/Vue-codes2#readme",
+  "devDependencies": {
+    "@babel/core": "^7.11.0",
+    "@babel/preset-env": "^7.11.0",
+    "cross-env": "^7.0.2",
+    "rollup": "^2.23.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-serve": "^1.0.3"
+  }
+}
